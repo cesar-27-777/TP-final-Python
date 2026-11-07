@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial‑scale=1.0">
+
+    <title>Panel de Sustentabilidad</title>
+
+    <style>
+        body {
+            font-family: Arial, sans‑serif;
+            background‑color: #f1f5f1;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max‑width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border‑radius: 12px;
+            box‑shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #216b42;
+            text‑align: center;
+        }
+
+        h2 {
+            color: #216b42;
+        }
+
+        .tarjeta {
+            background: #e5f4e9;
+            padding: 20px;
+            margin: 15px 0;
+            border‑radius: 8px;
+        }
+
+        .valor {
+            font‑size: 25px;
+            font‑weight: bold;
+            color: #216b42;
+        }
+
+        table {
+            width: 100%;
+            border‑collapse: collapse;
+            margin‑top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text‑align: center;
+        }
+
+        th {
+            background‑color: #216b42;
+            color: white;
+        }
+
+        tr:nth‑child(even) {
+            background‑color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>Panel de Sustentabilidad</h1>
+
+    <div class="tarjeta">
+        <h2>Total global de emisiones</h2>
+        <p class="valor">
+            {{ total_emisiones|floatformat:2 }} kg CO2
+        </p>
+    </div>
+
+    <div class="tarjeta">
+        <h2>Planta de mayor consumo</h2>
+        <p class="valor">
+            {{ planta_mayor_consumo }}
+        </p>
+    </div>
+
+    <h2>Métricas por planta industrial</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Planta</th>
+                <th>Consumo (kWh)</th>
+                <th>Emisiones (kg CO2)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in lista_plantas %}
+            <tr>
+                <td>{{ item.planta }}</td>
+                <td>{{ item.consumo|floatformat:2 }}</td>
+                <td>{{ item.emision|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
